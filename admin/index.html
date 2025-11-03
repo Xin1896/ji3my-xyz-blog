@@ -85,17 +85,20 @@
   <div id="cms-container"></div>
 
   <script>
+    // 默认密码: admin123 的 SHA-256 哈希
+    // 可以通过修改此值来更改密码（使用 https://emn178.github.io/online-tools/sha256.html 生成）
+    const CORRECT_PASSWORD_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9';
+
     // 密码验证
     async function checkPassword(event) {
       event.preventDefault();
       const password = document.getElementById('password').value;
       const errorMsg = document.getElementById('error-msg');
 
-      // 获取密码哈希
+      // 计算输入密码的哈希
       const hash = await sha256(password);
-      const correctHash = await fetch('/api/verify-admin').then(r => r.json()).then(d => d.hash);
 
-      if (hash === correctHash) {
+      if (hash === CORRECT_PASSWORD_HASH) {
         // 密码正确，保存到 sessionStorage
         sessionStorage.setItem('admin_auth', 'true');
         showCMS();
