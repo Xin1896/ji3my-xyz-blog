@@ -1,7 +1,11 @@
 {
-  "buildCommand": "bundle install && bundle exec jekyll build",
+  "buildCommand": "LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle install && LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll build",
   "outputDirectory": "_site",
-  "installCommand": "bundle install",
+  "installCommand": "LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle install",
   "framework": null,
-  "devCommand": "bundle exec jekyll serve --port $PORT"
+  "devCommand": "bundle exec jekyll serve --port $PORT",
+  "env": {
+    "LANG": "en_US.UTF-8",
+    "LC_ALL": "en_US.UTF-8"
+  }
 }

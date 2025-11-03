@@ -2,7 +2,16 @@
 
 source "https://rubygems.org"
 
-gemspec
+gem "jekyll", "~> 4.3"
+gem "jekyll-theme-chirpy", "~> 7.4"
+
+group :jekyll_plugins do
+  gem "jekyll-paginate"
+  gem "jekyll-seo-tag"
+  gem "jekyll-archives"
+  gem "jekyll-sitemap"
+  gem "jekyll-include-cache"
+end
 
 gem "html-proofer", "~> 5.0", group: :test
 
