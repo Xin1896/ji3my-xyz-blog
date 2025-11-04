@@ -125,58 +125,10 @@
       const cmsContainer = document.getElementById('cms-container');
       cmsContainer.style.display = 'block';
 
-      // CMS 配置（内联配置，不需要外部 config.yml）
-      window.CMS_MANUAL_INIT = true;
-
-      // 加载 Decap CMS
+      // 加载 Decap CMS（会自动加载 config.yml）
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-      script.onload = function() {
-        // 初始化 CMS 配置
-        initCMS();
-      };
-      document.body.appendChild(script);
-    }
-
-    // 初始化 CMS 配置
-    function initCMS() {
-      CMS.init({
-        config: {
-          backend: {
-            name: 'github',
-            repo: 'Xin1896/ji3my-xyz-blog',
-            branch: 'master',
-            base_url: 'https://ji3my.xyz',
-            auth_endpoint: '/api/callback'
-          },
-          media_folder: 'assets/img/posts',
-          public_folder: '/assets/img/posts',
-          locale: 'zh_Hans',
-          collections: [
-            {
-              name: 'posts',
-              label: '博客文章',
-              folder: '_posts',
-              create: true,
-              slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
-              fields: [
-                {label: '标题', name: 'title', widget: 'string'},
-                {
-                  label: '发布日期',
-                  name: 'date',
-                  widget: 'datetime',
-                  format: 'YYYY-MM-DD HH:mm:ss ZZ',
-                  date_format: 'YYYY-MM-DD',
-                  time_format: 'HH:mm:ss'
-                },
-                {label: '分类', name: 'categories', widget: 'list', required: false},
-                {label: '标签', name: 'tags', widget: 'list', required: false},
-                {label: '正文', name: 'body', widget: 'markdown'}
-              ]
-            }
-          ]
-        }
-      });
+      cmsContainer.appendChild(script);
     }
 
     // 检查是否已登录
